@@ -1,0 +1,73 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<br>
+<h1 class="text-center">Listado de Envíos</h1>
+<hr>
+
+<div class="row">
+    <div class="text-end">
+        <a href="/nuevoEnvio" class="btn btn-info text-right">
+            Agregar Envío
+        </a>
+    </div>
+</div>
+<br>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr class="bg-info">
+            <th>ID</th>
+            <th>CÓDIGO</th>
+            <th>ORIGEN</th>
+            <th>DESTINO</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for envio in envios %}
+        <tr>
+            <td>{{ envio.id }}</td>
+            <td>{{ envio.codigo }}</td>
+            <td>{{ envio.origen }}</td>
+            <td>{{ envio.destino }}</td>
+            <td>
+                <a href="/editarEnvio/{{ envio.id }}" class="btn btn-outline-warning">
+                    <i class="fa fa-pen"></i>
+                </a>
+                <a href="#" data-id="{{ envio.id }}" class="btn btn-outline-danger btnEliminar">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const botonesEliminar = document.querySelectorAll('.btnEliminar');
+
+        botonesEliminar.forEach(boton => {
+            boton.addEventListener('click', function (e) {
+                e.preventDefault();
+                const id = this.getAttribute('data-id');
+
+                Swal.fire({
+                    title: "¿Estás seguro?",
+                    text: "¡No podrás revertir esto!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sí, eliminar",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `/eliminarEnvio/${id}`;
+                    }
+                });
+            });
+        });
+    });
+</script>
+<br><br><br><br><br><br>
+{% endblock %}

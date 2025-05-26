@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     
+    path('', views.inicioEnvios),
+
     path('envios', views.inicioEnvios),
     path('nuevoEnvio', views.nuevoEnvio),
     path('guardarEnvio', views.guardarEnvio),
