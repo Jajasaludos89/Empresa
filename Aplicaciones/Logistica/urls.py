@@ -10,5 +10,12 @@ urlpatterns = [
     path('editarEnvio/<id>', views.editarEnvio),
     path('procesarEdicionEnvio', views.procesarEdicionEnvio),
 
+    path('clientes', views.inicioClientes),
+    path('nuevoCliente', views.nuevoCliente),
+    path('guardarCliente', views.guardarCliente),
+    path('eliminarCliente/<id>', views.eliminarCliente),
+    path('editarCliente/<id>', views.editarCliente),
+    path('procesarEdicionCliente', views.procesarEdicionCliente),
+
     
 ]
