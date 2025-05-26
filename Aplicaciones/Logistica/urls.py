@@ -17,5 +17,10 @@ urlpatterns = [
     path('editarCliente/<id>', views.editarCliente),
     path('procesarEdicionCliente', views.procesarEdicionCliente),
 
-    
+    path('registros', views.inicioRegistros),
+    path('nuevoRegistro', views.nuevoRegistro),
+    path('guardarRegistro', views.guardarRegistro),
+    path('eliminarRegistro/<id>', views.eliminarRegistro),
+    path('editarRegistro/<id>', views.editarRegistro),
+    path('procesarEdicionRegistro', views.procesarEdicionRegistro),
 ]
