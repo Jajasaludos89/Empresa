@@ -1,53 +1,46 @@
-{% extends 'plantilla.html' %}
+{% extends './plantilla.html' %}
 {% block contenido %}
+<br>
+<h1 class="text-center">Listado de Envíos</h1>
+<hr>
 
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-header bg-primary text-white">
-            <h4><i class="fas fa-shipping-fast"></i> Lista de Envíos</h4>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="text-end">
-                    <a href="/nuevoEnvio" class="btn btn-primary mb-3">
-                        <i class="fas fa-plus"></i> Nuevo Envío
-                    </a>
-                </div>
-            </div>
-            <table class="table table-bordered table-striped table-hover">
-                <thead class="table-primary">
-                    <tr>
-                        <th>ID</th>
-                        <th>Código</th>
-                        <th>Origen</th>
-                        <th>Destino</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for envio in envios %}
-                    <tr>
-                        <td>{{ envio.id }}</td>
-                        <td>{{ envio.codigo }}</td>
-                        <td>{{ envio.origen }}</td>
-                        <td>{{ envio.destino }}</td>
-                        <td>
-                            <a href="/editarEnvio/{{ envio.id }}" class="btn btn-outline-warning btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="#" 
-                               data-id="{{ envio.id }}" 
-                               class="btn btn-outline-danger btn-sm btnEliminar">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<div class="row">
+    <div class="text-end">
+        <a href="/nuevoEnvio" class="btn btn-info text-right">
+            Agregar Envío
+        </a>
     </div>
 </div>
+<br>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr class="bg-info">
+            <th>ID</th>
+            <th>CÓDIGO</th>
+            <th>ORIGEN</th>
+            <th>DESTINO</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for envio in envios %}
+        <tr>
+            <td>{{ envio.id }}</td>
+            <td>{{ envio.codigo }}</td>
+            <td>{{ envio.origen }}</td>
+            <td>{{ envio.destino }}</td>
+            <td>
+                <a href="/editarEnvio/{{ envio.id }}" class="btn btn-outline-warning">
+                    <i class="fa fa-pen"></i>
+                </a>
+                <a href="#" data-id="{{ envio.id }}" class="btn btn-outline-danger btnEliminar">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -76,5 +69,5 @@
         });
     });
 </script>
-
+<br><br><br><br><br><br>
 {% endblock %}
