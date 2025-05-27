@@ -31,11 +31,12 @@
             <td>{{ envio.destino }}</td>
             <td>
                 <a href="/editarEnvio/{{ envio.id }}" class="btn btn-outline-warning">
-                    <i class="fa fa-pen"></i>
+                    <i class="fa fa-pen"></i> Editar
                 </a>
                 <a href="#" data-id="{{ envio.id }}" class="btn btn-outline-danger btnEliminar">
-                    <i class="fa fa-trash"></i>
+                    <i class="fa fa-trash"></i> Eliminar
                 </a>
+                
             </td>
         </tr>
         {% endfor %}

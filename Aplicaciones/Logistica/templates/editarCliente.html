@@ -1,0 +1,38 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Editar Cliente</h1>
+        <form action="/procesarEdicionCliente" method="post">
+            {% csrf_token %}
+
+            <input type="hidden" name="id" value="{{ cliente.id }}">
+
+            <label for="nombre">Nombre:</label><br>
+            <input class="form-control" type="text" name="nombre" id="nombre" value="{{ cliente.nombre }}"><br><br>
+
+            <label for="telefono">Teléfono:</label><br>
+            <input class="form-control" type="text" name="telefono" id="telefono" value="{{ cliente.telefono }}"><br><br>
+
+            <label for="direccion">Dirección:</label><br>
+            <input class="form-control" type="text" name="direccion" id="direccion" value="{{ cliente.direccion }}"><br><br>
+
+            <label for="fecha_registro">Fecha de Registro:</label><br>
+            <input class="form-control" type="date" name="fecha_registro" id="fecha_registro" value="{{ cliente.fecha_registro|date:'Y-m-d' }}"><br><br>
+
+            <button class="btn btn-warning" type="submit">
+                <i class="fa fa-pen"></i> Editar
+            </button>
+
+            <a class="btn btn-outline-danger" href="/clientes">
+                <i class="fa fa-times"></i> Cancelar
+            </a>
+        </form>
+        <br>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{% endblock %}
