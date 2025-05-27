@@ -1,0 +1,31 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light">
+        <h1>Nuevo Cliente</h1>
+        <form action="/guardarCliente" method="post">
+            {% csrf_token %}
+            
+            <label for="">Nombre:</label><br>
+            <input class="form-control" type="text" name="nombre" id="nombre"> <br> <br>
+            
+            <label for="">Teléfono:</label><br>
+            <input class="form-control" type="tel" name="telefono" id="telefono"> <br> <br>
+            
+            <label for="">Dirección:</label><br>
+            <input class="form-control" type="text" name="direccion" id="direccion"> <br> <br>
+            
+            <label for="">Fecha de Registro:</label><br>
+            <input class="form-control" type="date" name="fecha_registro" id="fecha_registro"> <br> <br>
+            
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <a class="btn btn-outline-danger" href="/clientes">Cancelar</a>
+        </form>
+        <br>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+{% endblock %}

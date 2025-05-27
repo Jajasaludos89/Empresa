@@ -89,6 +89,7 @@ def procesarEdicionCliente(request):
 
 #Registro 
 
+
 def inicioRegistros(request):
     registros = RegistroEnvio.objects.all()
     return render(request, "inicioRegistros.html", {'registros': registros})
@@ -99,8 +100,8 @@ def nuevoRegistro(request):
     return render(request, "nuevoRegistro.html", {'envios': envios, 'clientes': clientes})
 
 def guardarRegistro(request):
-    envio_id = request.POST["envio"]
-    cliente_id = request.POST["cliente"]
+    envio_id = request.POST["envio_id"]
+    cliente_id = request.POST["cliente_id"]
     conductor = request.POST["conductor"]
     estado_viaje = request.POST["estado_viaje"]
 
@@ -135,8 +136,8 @@ def editarRegistro(request, id):
 def procesarEdicionRegistro(request):
     id = request.POST["id"]
     registro = RegistroEnvio.objects.get(id=id)
-    registro.envio = Envio.objects.get(id=request.POST["envio"])
-    registro.cliente = Cliente.objects.get(id=request.POST["cliente"])
+    registro.envio = Envio.objects.get(id=request.POST["envio_id"])
+    registro.cliente = Cliente.objects.get(id=request.POST["cliente_id"])
     registro.conductor = request.POST["conductor"]
     registro.estado_viaje = request.POST["estado_viaje"]
     registro.save()

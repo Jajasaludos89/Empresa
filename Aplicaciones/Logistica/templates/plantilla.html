@@ -28,6 +28,11 @@
   <!-- Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+
   <style>
     .main-content {
       margin-left: 300px;
@@ -107,6 +112,19 @@
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
+  {% if messages %}
+      {% for mensaje in messages %}
+        <script>
+          Swal.fire({
+            title: "CONFIRMACIÓN",
+            text: "{{ mensaje }}",
+            icon: "success"
+          });
+        </script>
+      {% endfor %}
+    {% endif %}
+
 
 </body>
 
