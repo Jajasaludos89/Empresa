@@ -5,7 +5,7 @@
     <div class="col-md-3"></div>
     <div class="col-md-6 bg-light p-4">
         <h1>Editar Registro de Envío</h1>
-        <form action="/procesarEdicionRegistro" method="post">
+        <form action="/procesarEdicionRegistro" method="post" id="frm_editar_registro" >
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ registro.id }}">
 
@@ -45,5 +45,48 @@
     </div>
     <div class="col-md-3"></div>
 </div>
+
+
+<!-- Embeber codigo javascript/jquery dentro del HTML -->
+<script>
+    $("#frm_editar_registro").validate({
+        rules: {
+            "cliente_id": {
+                required: true,
+                minlength: 5,
+                maxlength: 20
+            },
+            "envio_id": {
+                required: true
+            },
+            "conductor": {
+                required: true,
+                minlength: 3,
+                maxlength: 50
+            },
+            "estado_viaje": {
+                required: true
+            }
+        },
+        messages: {
+            "cliente_id": {
+                required: "Llene este campo con el id del cliente",
+                minlength: "Debe tener al menos 5 caracteres",
+                maxlength: "No debe exceder 20 caracteres"
+            },
+            "envio_id": {
+                required: "Llene este campo con el id del envio"
+            },
+            "conductor": {
+                required: "Llene este campo con el nombre del conductor",
+                minlength: "Debe tener al menos 3 caracteres",
+                maxlength: "No debe exceder 50 caracteres"
+            },
+            "estado_viaje": {
+                required: "Llene este campo con el estado del envio"
+            }
+        }
+    });
+</script>
 
 {% endblock %}

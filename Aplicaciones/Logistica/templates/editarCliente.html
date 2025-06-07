@@ -5,7 +5,7 @@
     <div class="col-md-3"></div>
     <div class="col-md-6 bg-light">
         <h1>Editar Cliente</h1>
-        <form action="/procesarEdicionCliente" method="post">
+        <form action="/procesarEdicionCliente" method="post" id="frm_editar_cliente">
             {% csrf_token %}
 
             <input type="hidden" name="id" value="{{ cliente.id }}">
@@ -34,5 +34,55 @@
     </div>
     <div class="col-md-3"></div>
 </div>
+
+<script>
+    $("#frm_editar_cliente").validate({
+        rules: {
+            "nombre": {
+                required: true,
+                minlength: 3,
+                maxlength: 50
+            },
+            "telefono": {
+                required: true,
+                minlength: 7,
+                maxlength: 15,
+                digits: true // Solo permite números
+            },
+            "direccion": {
+                required: true,
+                minlength: 5,
+                maxlength: 100
+            },
+            "fecha_registro": {
+                required: true,
+                date: true
+            }
+        },
+        messages: {
+            "nombre": {
+                required: "Llene este campo con el nombre del Cliente",
+                minlength: "Debe tener al menos 3 caracteres",
+                maxlength: "No debe exceder 50 caracteres"
+            },
+            "telefono": {
+                required: "Llene este campo con el numero correcto",
+                minlength: "Debe tener al menos 7 dígitos",
+                maxlength: "No debe exceder 15 dígitos",
+                digits: "Solo se permiten números"
+            },
+            "direccion": {
+                required: "Llene este campo con la direccion correcta",
+                minlength: "Debe tener al menos 5 caracteres",
+                maxlength: "No debe exceder 100 caracteres"
+            },
+            "fecha_registro": {
+                required: "Llene este campo con la Fecha de registro",
+                date: "Ingrese una fecha válida"
+            }
+        }
+    });
+</script>
+
 
 {% endblock %}

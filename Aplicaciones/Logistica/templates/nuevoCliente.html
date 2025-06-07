@@ -5,20 +5,20 @@
     <div class="col-md-3"></div>
     <div class="col-md-6 bg-light">
         <h1>Nuevo Cliente</h1>
-        <form action="/guardarCliente" method="post">
+        <form action="/guardarCliente" method="post" id="frm_nuevo_cliente" >
             {% csrf_token %}
             
             <label for="">Nombre:</label><br>
-            <input class="form-control" type="text" name="nombre" id="nombre"> <br> <br>
+            <input required class="form-control" type="text" name="nombre" id="nombre"> <br> <br>
             
             <label for="">Teléfono:</label><br>
-            <input class="form-control" type="tel" name="telefono" id="telefono"> <br> <br>
+            <input required class="form-control" type="tel" name="telefono" id="telefono"> <br> <br>
             
             <label for="">Dirección:</label><br>
-            <input class="form-control" type="text" name="direccion" id="direccion"> <br> <br>
+            <input required class="form-control" type="text" name="direccion" id="direccion"> <br> <br>
             
             <label for="">Fecha de Registro:</label><br>
-            <input class="form-control" type="date" name="fecha_registro" id="fecha_registro"> <br> <br>
+            <input required class="form-control" type="date" name="fecha_registro" id="fecha_registro"> <br> <br>
             
             <button class="btn btn-success" type="submit">Guardar</button>
             <a class="btn btn-outline-danger" href="/clientes">Cancelar</a>
@@ -27,5 +27,59 @@
     </div>
     <div class="col-md-3"></div>
 </div>
+
+
+
+<!-- Embeber codigo javascript/jquery dentro del HTML -->
++<script>
+    $("#frm_nuevo_cliente").validate({
+        rules: {
+            "nombre": {
+                required: true,
+                minlength: 3,
+                maxlength: 50
+            },
+            "telefono": {
+                required: true,
+                minlength: 7,
+                maxlength: 15,
+                digits: true // Solo permite números
+            },
+            "direccion": {
+                required: true,
+                minlength: 5,
+                maxlength: 100
+            },
+            "fecha_registro": {
+                required: true,
+                date: true
+            }
+        },
+        messages: {
+            "nombre": {
+                required: "Llene este campo con el nombre del Cliente",
+                minlength: "Debe tener al menos 3 caracteres",
+                maxlength: "No debe exceder 50 caracteres"
+            },
+            "telefono": {
+                required: "Llene este campo con el numero correcto",
+                minlength: "Debe tener al menos 7 dígitos",
+                maxlength: "No debe exceder 15 dígitos",
+                digits: "Solo se permiten números"
+            },
+            "direccion": {
+                required: "Llene este campo con la direccion correcta",
+                minlength: "Debe tener al menos 5 caracteres",
+                maxlength: "No debe exceder 100 caracteres"
+            },
+            "fecha_registro": {
+                required: "Llene este campo con la Fecha de registro",
+                date: "Ingrese una fecha válida"
+            }
+        }
+    });
+</script>
+
+
 
 {% endblock %}

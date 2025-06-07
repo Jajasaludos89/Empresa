@@ -5,7 +5,7 @@
     <div class="col-md-3"></div>
     <div class="col-md-6 bg-light p-4">
         <h1>Editar Envío</h1>
-        <form action="/procesarEdicionEnvio" method="post">
+        <form action="/procesarEdicionEnvio" method="post" id="frm_editar_envio">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ envio.id }}">
 
@@ -30,5 +30,46 @@
     </div>
     <div class="col-md-3"></div>
 </div>
+
+<!-- Embeber codigo javascript/jquery dentro del HTML -->
+<script>
+    $("#frm_editar_envio").validate({
+        rules: {
+            "codigo": {
+                required: true,
+                minlength: 5,
+                maxlength: 20
+            },
+            "origen": {
+                required: true,
+                minlength: 3,
+                maxlength: 50
+            },
+            "destino": {
+                required: true,
+                minlength: 3,
+                maxlength: 50
+            }
+        },
+        messages: {
+            "codigo": {
+                required: "Llene este campo con el codigo",
+                minlength: "Debe tener al menos 5 caracteres",
+                maxlength: "No debe exceder 20 caracteres"
+            },
+            "origen": {
+                required: "Llene este campo con el nombre del origen del envio",
+                minlength: "Debe tener al menos 3 caracteres",
+                maxlength: "No debe exceder 50 caracteres"
+            },
+            "destino": {
+                required: "llene este campo con el nombre del destino del envio",
+                minlength: "Debe tener al menos 3 caracteres",
+                maxlength: "No debe exceder 50 caracteres"
+            }
+        }
+    });
+</script>
+
 
 {% endblock %}
